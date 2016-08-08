@@ -1,0 +1,30 @@
+require 'rest_client'
+require 'json'
+
+host = "CHANGE ME"
+client_id = "CHANGE ME"
+client_secret = "CHANGE ME"
+
+def get_token(host, client_id, client_secret)
+  url = "#{host}/identity/oauth/token?grant_type=client_credentials&client_id=#{client_id}&client_secret=#{client_secret}"
+  response = RestClient.get url
+  json = JSON.parse(response)
+  return json["access_token"]
+end
+
+
+params = {
+  :access_token => get_token(host, client_id, client_secret),
+  :name => "New Email - Ruby",
+  :folder => JSON.generate({:id => 1071, :type => "Program"}),
+  :template => 1001,
+  :subject => "TEST- Ruby", #optional
+  :fromName => "tester", #optional
+  :fromEmail => "test@example.com", #optional
+  :replyEmail => "text@example.com", #optional
+  :operational => false #optional
+}
+
+response = RestClient.post "#{host}/rest/asset/v1/emails.json", params
+
+puts response
