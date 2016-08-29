@@ -1,7 +1,7 @@
 # Marketo REST API Sample Code
 This repository contains language-specific directories with samples.  The samples simply show how to invoke various REST API endpoints.
 # Documentation
-Reference documentation can be found on the [Marketo Developers website](http://developers.marketo.com).
+Reference documentation can be found on the [Marketo Developers website](http://developers.marketo.com/rest-api/).
 # Contributing
 We encourage members of the community to contribute bug fixes and new samples.  To contribute simply fork the repository, make your changes, and submit a pull request.
 
