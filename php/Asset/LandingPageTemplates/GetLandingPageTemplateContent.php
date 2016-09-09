@@ -4,9 +4,9 @@ $content->id = 1037;
 print_r($content->getData());
 
 class GetLandingPageTemplateContent{
-	private $host = "https://299-BYM-827.mktorest.com";
-	private $clientId = "b417d98f-9289-47d1-a61f-db141bf0267f";
-	private $clientSecret = "0DipOvz4h2wP1ANeVjlfwMvECJpo0ZYc";
+	private $host = "CHANGE ME";
+	private $clientId = "CHANGE ME";
+	private $clientSecret = "CHANGE ME";
 	public $id;//id of template to retrieve content from
 	public $status;//optional status filter
 	

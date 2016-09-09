@@ -6,9 +6,9 @@ print_r($activities->getData());
 
 
 class GetLeadActivities{
-	private $host = "https://299-BYM-827.mktorest.com";
-	private $clientId = "b417d98f-9289-47d1-a61f-db141bf0267f";
-	private $clientSecret = "0DipOvz4h2wP1ANeVjlfwMvECJpo0ZYc";
+	private $host = "CHANGE ME";
+	private $clientId = "CHANGE ME";
+	private $clientSecret = "CHANGE ME";
 	public $activityTypeIds; //array of integer IDs of activity types, required
 	public $nextPageToken;//paging token to specify beginning date for activities, required
 	public $batchSize;//max 300, default 300

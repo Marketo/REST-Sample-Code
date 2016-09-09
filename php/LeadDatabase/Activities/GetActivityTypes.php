@@ -3,9 +3,9 @@ $types = new GetActivityTypes();
 print_r($types->getData());
 
 class GetActivityTypes{
-	private $host = "https://299-BYM-827.mktorest.com";
-	private $clientId = "b417d98f-9289-47d1-a61f-db141bf0267f";
-	private $clientSecret = "0DipOvz4h2wP1ANeVjlfwMvECJpo0ZYc";
+	private $host = "CHANGE ME";
+	private $clientId = "CHANGE ME";
+	private $clientSecret = "CHANGE ME";
 	
 	public function getData(){
 		$url = $this->host . "/rest/v1/activities/types.json?access_token=" . $this->getToken();

@@ -4,9 +4,9 @@ print_r($templates->getData());
 
 
 class MultipleLandingPageTemplates{
-	private $host = "https://299-BYM-827.mktorest.com";
-	private $clientId = "b417d98f-9289-47d1-a61f-db141bf0267f";
-	private $clientSecret = "0DipOvz4h2wP1ANeVjlfwMvECJpo0ZYc";
+	private $host = "CHANGE ME";
+	private $clientId = "CHANGE ME";
+	private $clientSecret = "CHANGE ME";
 	public $offset;//integer offset for paging
 	public $maxreturn;//max number of templates to return
 	public $status;//optional status filter
