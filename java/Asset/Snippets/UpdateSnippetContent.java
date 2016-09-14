@@ -1,3 +1,10 @@
+/*
+   Marketo REST API Sample Code
+   Copyright (C) 2016 Marketo, Inc.
+
+   This software may be modified and distributed under the terms
+   of the MIT license.  See the LICENSE file for details.
+*/
 package dev.marketo.samples.Snippets;
 
 import java.io.IOException;
