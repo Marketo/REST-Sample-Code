@@ -1,4 +1,11 @@
 <?php
+/*
+   Marketo REST API Sample Code
+   Copyright (C) 2016 Marketo, Inc.
+
+   This software may be modified and distributed under the terms
+   of the MIT license.  See the LICENSE file for details.
+*/
 $activities = new GetLeadActivities();
 $activities->nextPageToken = "WQV2VQVPPCKHC6AQYVK7JDSA3I3LCWXH3Y6IIZ7YSGQLXHCPVE5Q====";
 $activities->activityTypeIds = [1,2,3];

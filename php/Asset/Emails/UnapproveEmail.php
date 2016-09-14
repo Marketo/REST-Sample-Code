@@ -1,4 +1,11 @@
 <?php
+/*
+   Marketo REST API Sample Code
+   Copyright (C) 2016 Marketo, Inc.
+
+   This software may be modified and distributed under the terms
+   of the MIT license.  See the LICENSE file for details.
+*/
 $clone = new UnapproveEmail();
 $clone->id = 1;
 print_r($clone->postData());

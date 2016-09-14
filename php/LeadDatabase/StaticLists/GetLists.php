@@ -1,4 +1,11 @@
 <?php
+/*
+   Marketo REST API Sample Code
+   Copyright (C) 2016 Marketo, Inc.
+
+   This software may be modified and distributed under the terms
+   of the MIT license.  See the LICENSE file for details.
+*/
 $lists = new MultipleLists();
 $lists->ids = [1,2,3,4,5,6,7,8, 1001, 1007];
 print_r($lists->getData());

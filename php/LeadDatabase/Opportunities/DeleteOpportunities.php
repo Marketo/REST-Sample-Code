@@ -1,4 +1,11 @@
 <?php
+/*
+   Marketo REST API Sample Code
+   Copyright (C) 2016 Marketo, Inc.
+
+   This software may be modified and distributed under the terms
+   of the MIT license.  See the LICENSE file for details.
+*/
 $delete = new DeleteOpportunities();
 $delete->dedupeBy = "dedupeFields";
 $delete->input = ["Opportunity 1", "Opportunity 2", "Opportunity 3"];

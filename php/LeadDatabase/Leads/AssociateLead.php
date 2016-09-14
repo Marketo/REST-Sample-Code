@@ -1,4 +1,11 @@
 <?php
+/*
+   Marketo REST API Sample Code
+   Copyright (C) 2016 Marketo, Inc.
+
+   This software may be modified and distributed under the terms
+   of the MIT license.  See the LICENSE file for details.
+*/
 $associate = new AssociateLead();
 $associate->id = 1;
 $associate->cookie = urlencode("mkto_trk=id:299-BYM-827&token:_mch-localhost-1435105067262-67189");
