@@ -9,7 +9,7 @@
    of the MIT license.  See the LICENSE file for details.
 */
 $program = new GetProgramByName();
-$program->name = "Program";
+$program->name = "Test Program Name";
 
 print_r($program->getData());
 
