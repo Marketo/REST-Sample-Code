@@ -9,15 +9,14 @@
    of the MIT license.  See the LICENSE file for details.
 */
 $program = new CloneProgram();
+$program->id = 1142;
 $program->folder = new stdClass();
 $program->folder->id = 5562;
 $program->folder->type = "Folder";
 $program->name = "Clone Program PHP";
 $program->description = "Cloned with PHP";
-$program->type = "Default";
 
 print_r($program->postData());
-
 
 class CloneProgram{
 	private $host = "CHANGE ME";
@@ -29,7 +28,7 @@ class CloneProgram{
 	public $description;//description of resulting program
 	
 	public function postData(){
-		$url = $this->host . "/rest/asset/v1/program/" . $this->folder->id . "/clone.json";
+		$url = $this->host . "/rest/asset/v1/program/" . $this->id . "/clone.json";
 		$ch = curl_init($url);
 		$requestBody = $this->bodyBuilder();
 		curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
@@ -52,13 +51,6 @@ class CloneProgram{
 	}
     
 	private function bodyBuilder(){
-// 		$requestBody = new stdClass();
-// 		$requestBody->folders = $this->folder;
-// 		$requestBody->name = $this->name;
-// 		$requestBody->description = $this->description;
-// 		$json = json_encode($requestBody);
-// 		print_r($json);
-// 		return $json;
 		$jsonFolder = json_encode($this->folder);
 		$requestBody = "name=$this->name&folder=$jsonFolder&description=$this->description";
 		return $requestBody;
