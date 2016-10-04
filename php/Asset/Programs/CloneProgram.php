@@ -8,33 +8,28 @@
    This software may be modified and distributed under the terms
    of the MIT license.  See the LICENSE file for details.
 */
-$program = new CreateProgram();
+$program = new CloneProgram();
 $program->folder = new stdClass();
 $program->folder->id = 5562;
 $program->folder->type = "Folder";
-$program->name = "New Program PHP";
-$program->description = "created with PHP";
+$program->name = "Clone Program PHP";
+$program->description = "Cloned with PHP";
 $program->type = "Default";
-$program->channel = "Content";
 
 print_r($program->postData());
 
 
-class CreateProgram{
+class CloneProgram{
 	private $host = "CHANGE ME";
 	private $clientId = "CHANGE ME";
 	private $clientSecret = "CHANGE ME";
 
-	public $folder;//folders object with id and type
-	public $name;//name of new program
-	public $description;//description of new program
-	public $type;//type of new program
-	public $channel;//channel of new Program
-	public $tags;//array of tag objects, optional
-	public $costs;//array of cost objects, optional
+	public $folder;//parent folder, folders object with id and type, type must be folder, target folder must be in same workspace as program being cloned
+	public $name;//name of resulting program
+	public $description;//description of resulting program
 	
 	public function postData(){
-		$url = $this->host . "/rest/asset/v1/programs.json";
+		$url = $this->host . "/rest/asset/v1/program/" . $this->folder->id . "/clone.json";
 		$ch = curl_init($url);
 		$requestBody = $this->bodyBuilder();
 		curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
@@ -55,32 +50,17 @@ class CreateProgram{
 		$token = $response->access_token;
 		return $token;
 	}
+    
 	private function bodyBuilder(){
 // 		$requestBody = new stdClass();
 // 		$requestBody->folders = $this->folder;
 // 		$requestBody->name = $this->name;
 // 		$requestBody->description = $this->description;
-// 		$requestBody->type = $this->type;
-// 		$requestBody->channel = $this->channel;
-// 		if (isset($this->tags)){
-// 			$requestBody->tags = $this->tags;
-// 		}
-// 		if(isset($this->costs)){
-// 			$requestBody->costs = $this->costs;
-// 		}
 // 		$json = json_encode($requestBody);
 // 		print_r($json);
 // 		return $json;
 		$jsonFolder = json_encode($this->folder);
-		$requestBody = "name=$this->name&folder=$jsonFolder&description=$this->description&type=$this->type&channel=$this->channel";
-		if (isset($this->tags)){
-			$jsonTags = json_encode($this->tags);
-			$requestBody .= "&tags=$jsonTags";
-		}
-		if (isset($this->costs)){
-			$jsonCosts = json_encode($this->costs);
-			$requestBody .= "&costs=$jsonCosts";
-		}
+		$requestBody = "name=$this->name&folder=$jsonFolder&description=$this->description";
 		return $requestBody;
 	}
 }
