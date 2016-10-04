@@ -9,15 +9,15 @@
    of the MIT license.  See the LICENSE file for details.
 */
 
-$programs = new BrowsePrograms();
+$programs = new GetPrograms();
 print_r($programs->getData());
 
-class BrowsePrograms{
+class GetPrograms{
 	private $host = "CHANGE ME";
 	private $clientId = "CHANGE ME";
 	private $clientSecret = "CHANGE ME";
 	
-	public $status;//status filter for programs
+	public $status;//status filter for Engagement and Email programs, can be used to filter on "on", "off", or "unlocked"
 	public $offset;//integer offset for paging
 	public $maxReturn;//number of results to return, default 20, max 200
 
