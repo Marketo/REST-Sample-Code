@@ -21,7 +21,7 @@ class DeleteProgram{
 	public $id;//id of program to delete
 
 	public function postData(){
-		$url = $this->host . "/rest/asset/v1/program/" . $this->id . "delete.json";
+		$url = $this->host . "/rest/asset/v1/program/" . $this->id . "/delete.json";
 		$ch = curl_init($url);
 		curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('accept: application/json', "Authorization: Bearer " . $this->getToken()));
