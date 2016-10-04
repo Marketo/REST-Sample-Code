@@ -8,33 +8,35 @@
    This software may be modified and distributed under the terms
    of the MIT license.  See the LICENSE file for details.
 */
-$program = new CreateProgram();
-$program->folder = new stdClass();
-$program->folder->id = 5562;
-$program->folder->type = "Folder";
-$program->name = "New Program PHP";
-$program->description = "created with PHP";
-$program->type = "Default";
-$program->channel = "Content";
+$program = new UpdateProgramMetadata();
+$program->id = 5562;
+$program->name = "Update Program Metadata PHP";
+$program->description = "Updated with PHP";
+$program->tags = new stdClass();
+$program->tags->tagType = "Program Owner";
+$program->tags->tagValue = "David";
+$program->costs = new stdClass();
+$program->costs->startDate = "2016-07-01";
+$program->costs->cost = 1000;
+$program->costs->note = "Illustrator for eBook";
+$program->costsDestructiveUpdate = FALSE;
 
 print_r($program->postData());
 
-class CreateProgram{
+class UpdateProgramMetadata{
 	private $host = "CHANGE ME";
 	private $clientId = "CHANGE ME";
 	private $clientSecret = "CHANGE ME";
 
 	//all params optional
-	public $folder;//folders object with id and type
-	public $name;//name of program
-	public $description;//description of program
-	public $type;//type of program
-	public $channel;//channel of Program
-	public $tags;//array of tag objects
-	public $costs;//array of cost objects
+	public $name;//new name of program
+	public $description;//new description of program
+	public $tags;//array of tag objects, tagType must exist
+	public $costs;//array of period cost objects
+	public $costsDestructiveUpdate;//boolean flag to destroy existing costs and replace with specified costs
 	
 	public function postData(){
-		$url = $this->host . "/rest/asset/v1/programs.json";
+		$url = $this->host . "/rest/asset/v1/program/" . this->id . ".json";
 		$ch = curl_init($url);
 		$requestBody = $this->bodyBuilder();
 		curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
@@ -56,22 +58,12 @@ class CreateProgram{
 		return $token;
 	}
 	private function bodyBuilder(){
-		$requestBody = "&description=$this->description&type=$this->type&channel=$this->channel";
+		$requestBody = "";
 		if(isset($this->name)){
 			$requestBody .= "&name=$this->name";
 		}
-		if(isset($this->folder)){
-			$jsonFolder = json_encode($this->folder);
-			$requestBody .= "&folder=$jsonFolder";
-		}
 		if(isset($this->description)){
 			$requestBody .= "&description=$this->description";
-		}
-		if(isset($this->type)){
-			$requestBody .= "&type=$this->type";
-		}
-		if(isset($this->channel)){
-			$requestBody .= "&channel=$this->channel";
 		}
 		if (isset($this->tags)){
 			$jsonTags = json_encode($this->tags);
@@ -80,6 +72,9 @@ class CreateProgram{
 		if (isset($this->costs)){
 			$jsonCosts = json_encode($this->costs);
 			$requestBody .= "&costs=$jsonCosts";
+		}
+		if (isset($this->costsDestructiveUpdate)){
+			$requestBody .= "&costsDestructiveUpdate=true";
 		}
 		return $requestBody;
 	}
