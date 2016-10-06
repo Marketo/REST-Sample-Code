@@ -23,7 +23,7 @@ Additional questions or comments?  Please contact [developerfeedback@marketo.com
 ## Authentication
 |Category | Language|
 |----------|---------|
-|Identity | C# / [Java](https://github.com/Marketo/REST-Sample-Code/tree/master/java/Authentication/Identity) / PHP / [Ruby](https://github.com/Marketo/REST-Sample-Code/tree/master/ruby/Authentication/Identity)|
+|Identity | [C#](https://github.com/Marketo/REST-Sample-Code/tree/master/c#/Authentication/Identity) / [Java](https://github.com/Marketo/REST-Sample-Code/tree/master/java/Authentication/Identity) / PHP / [Ruby](https://github.com/Marketo/REST-Sample-Code/tree/master/ruby/Authentication/Identity)|
 ## Lead Database
 |Category | Language|
 |----------|---------|
