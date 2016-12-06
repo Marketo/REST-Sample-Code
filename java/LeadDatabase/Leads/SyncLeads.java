@@ -40,7 +40,7 @@ public class UpsertLeads {
 	
 	public static void main(String[] args){
 		//Create two JsonObjects representing leads
-		JsonObject lead1 = new JsonObject().add("email", "kelkington@marketo.com");
+		JsonObject lead1 = new JsonObject().add("email", "john.doe@marketo.com");
 		JsonObject lead2 = new JsonObject().add("email", "mkto@mkto.mkto");
 		UpsertLeads upsertLeads = new UpsertLeads();
 		upsertLeads.leads = new JsonObject[]{lead1, lead2};// add out leads 
