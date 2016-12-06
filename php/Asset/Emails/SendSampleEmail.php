@@ -10,7 +10,7 @@
 */
 $sample = new SendSampleEmail();
 $sample->id = 1;
-$sample->emailAddress = "kelkington@marketo.com";
+$sample->emailAddress = "john.doe@marketo.com";
 print_r($sample->postData());
 
 class SendSampleEmail{
