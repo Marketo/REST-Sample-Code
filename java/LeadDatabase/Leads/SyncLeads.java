@@ -41,7 +41,7 @@ public class UpsertLeads {
 	public static void main(String[] args){
 		//Create two JsonObjects representing leads
 		JsonObject lead1 = new JsonObject().add("email", "john.doe@marketo.com");
-		JsonObject lead2 = new JsonObject().add("email", "mkto@mkto.mkto");
+		JsonObject lead2 = new JsonObject().add("email", "jane.doe@marketo.com");
 		UpsertLeads upsertLeads = new UpsertLeads();
 		upsertLeads.leads = new JsonObject[]{lead1, lead2};// add out leads 
 		upsertLeads.lookupField = "email"; //set the lookupField
