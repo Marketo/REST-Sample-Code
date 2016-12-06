@@ -10,7 +10,7 @@
 */
 $leads = new MultipleLeads();
 $leads->filterType = "email";
-$leads->filterValues = array("kelkington@marketo.com");
+$leads->filterValues = array("john.doe@marketo.com");
 $leads->fields = array("email", "firstName", "lastName");
 print_r($leads->getData());
 
