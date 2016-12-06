@@ -9,7 +9,7 @@
    of the MIT license.  See the LICENSE file for details.
 */
 $lead1 = new stdClass();
-$lead1->email = "upert.test@marketo.com";
+$lead1->email = "john.doe@marketo.com";
 
 $upsert = new UpsertLeads();
 $upsert->input = array($lead1);
