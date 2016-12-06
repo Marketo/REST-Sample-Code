@@ -29,7 +29,19 @@ namespace Samples
         private String clientSecret = "CHANGE ME"; //clientSecret from admin > Launchpoint
         private ArrayList headers = new ArrayList();
         public int id;
+        /*
+        public static void Main(String[] args)
+        {
+            Lead lead = new Lead();
+            lead.id = 1024;
+            String result = lead.getData();
+            Console.WriteLine(result);
+            while (true)
+            {
 
+            }
+        }
+        */
         public String getData()
         {
             String url = host + "/rest/v1/lead/" + id + ".json?access_token=" + getToken();
