@@ -42,7 +42,7 @@ public class MultipleLeads {
 	public static void main(String[] args) {
 		MultipleLeads leads = new MultipleLeads();
 		leads.filterType = "email"; //add a filterType, email
-		leads.filterValues = new String[]{"kelkington@marketo.com"}; //add an email address to search for
+		leads.filterValues = new String[]{"john.doe@marketo.com"}; //add an email address to search for
 		String result = leads.getData();
 		System.out.println(result);
 		}
