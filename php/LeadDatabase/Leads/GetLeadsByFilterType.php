@@ -61,7 +61,7 @@ class MultipleLeads{
 			}elseif ($i === 0){
 				$csvString = $field;
 			}	
-                       $i++
+                       $i++;
 		}
 		return $csvString;
 	}
