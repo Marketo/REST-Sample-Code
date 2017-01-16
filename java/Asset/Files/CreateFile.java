@@ -43,7 +43,7 @@ public class CreateFile {
 	public String description; //optional description
 	public Boolean insertOnly; //option to only submit file if there is no file matching the submitted name
 	//a filename is required in the content-disposition for file param of request body
-	public String filePath = "C:\\Users\\kelkington\\Documents\\mktoseedlist.csv";
+	public String filePath = "C:\\LeadList\\mktoseedlist.csv";
 	
 	public static void main(String[] args){
 		CreateFile create = new CreateFile();

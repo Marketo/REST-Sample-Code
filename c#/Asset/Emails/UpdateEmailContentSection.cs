@@ -34,7 +34,7 @@ namespace Samples
         {
             var content = new UpdateEmailTemplateContent();
             content.id = 1001;
-            content.content = File.ReadAllText("C:\\Users\\kelkington\\Desktop\\Box Sync\\Dev Dot Marketo\\template.html");
+            content.content = File.ReadAllText("C:\\EmailContent\\template.html");
             String result = content.postData();
             Console.Write(result);
         }

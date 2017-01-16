@@ -45,7 +45,7 @@ public class ImportLeads {
 	
 	public static void main(String[] args){
 		ImportLeads importLeads = new ImportLeads();
-		importLeads.filePath = "C:\\Users\\kelkington\\Documents\\mktoseedlist.csv";
+		importLeads.filePath = "C:\\LeadList\\mktoseedlist.csv";
 		importLeads.format = "csv";
 		String result = importLeads.postData();
 		System.out.println(result);

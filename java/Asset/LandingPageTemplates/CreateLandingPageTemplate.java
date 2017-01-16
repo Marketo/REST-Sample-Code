@@ -46,8 +46,8 @@ public class CreateLandingPageTemplate {
 		create.folder = new JsonObject();
 		create.folder.add("id", 12);
 		create.folder.add("type", "Folder");
-		create.name = "new LP Template - Java 2";
-		create.file = "C:\\Users\\kelkington\\My Documents\\testHTML.html";
+		create.name = "New LP Template";
+		create.file = "C:\\LandingPageContent\\template.html";
 		String result = create.postData();
 		System.out.println(result);
 	}

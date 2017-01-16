@@ -36,8 +36,8 @@ namespace Samples
         public static void Main(string[] args)
         {
             var file = new CreateFile();
-            file.name = "C# Example File";
-            file.file = File.ReadAllText("C:\\Users\\kelkington\\Desktop\\Box Sync\\Dev Dot Marketo\\template.html");
+            file.name = "HTML Example File";
+            file.file = File.ReadAllText("C:\\EmailContent\\template.html");
             file.folder = new Dictionary<string, dynamic>();
             file.folder.Add("id", 5565);
             file.folder.Add("type", "Folder");

@@ -43,7 +43,7 @@ public class UpdateEmailTemplateContent {
 	public static void main(String[] args){
 		UpdateEmailTemplateContent update = new UpdateEmailTemplateContent();
 		update.id = 1001;
-		update.file = "C:\\Users\\kelkington\\My Documents\\testHTML.html";
+		update.file = "C:\\EmailContent\\template.html";
 		String result = update.postData();
 		System.out.println(result);
 	}

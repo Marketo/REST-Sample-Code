@@ -43,7 +43,7 @@ public class UpdateLandingPageTemplateContent {
 	public static void main(String[] args){
 		UpdateLandingPageTemplateContent update = new UpdateLandingPageTemplateContent();
 		update.id = 1001;
-		update.file = "C:\\Users\\kelkington\\My Documents\\testHTML.html";
+		update.file = "C:\\LandingPageContent\\template.html";
 		String result = update.postData();
 		System.out.println(result);
 	}

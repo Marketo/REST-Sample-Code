@@ -35,11 +35,11 @@ namespace Samples
         public static void Main(string[] args)
         {
             var template = new CreateEmailTemplate();
-            template.name = "C# Example Template";
+            template.name = "HTML Example Template";
             template.folder = new Dictionary<string, dynamic>();
             template.folder.Add("id", 15);
             template.folder.Add("type", "Folder");
-            template.content = File.ReadAllText("C:\\Users\\kelkington\\Desktop\\Box Sync\\Dev Dot Marketo\\template.html");
+            template.content = File.ReadAllText("C:\\EmailContent\\template.html");
             String result = template.postData();
             Console.Write(result);
         }

@@ -36,7 +36,7 @@ namespace Samples
             var content = new UpdateSnippetContent();
             content.id = 1001;
             content.type = "HTML"
-            content.content = File.ReadAllText("C:\\Users\\kelkington\\Desktop\\Box Sync\\Dev Dot Marketo\\template.html");
+            content.content = File.ReadAllText("C:\\SnippetContent\\template.html");
             String result = content.postData();
             Console.Write(result);
         }
