@@ -38,7 +38,7 @@ class CreateProgram{
 		$ch = curl_init($url);
 		$requestBody = $this->bodyBuilder();
 		curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('accept: application/json', "Authorization: Bearer " . $this->getToken(), "Content-Type: application/json"));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('accept: application/json', "Authorization: Bearer " . $this->getToken(), "Content-Type: application/x-www-form-urlencoded"));
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
 		curl_getinfo($ch);
