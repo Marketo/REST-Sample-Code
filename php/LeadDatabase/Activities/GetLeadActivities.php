@@ -22,6 +22,7 @@ class GetLeadActivities{
 	public $nextPageToken;//paging token to specify beginning date for activities, required
 	public $batchSize;//max 300, default 300
 	public $listId;//integer id of a static list, if specified will only retrieve from leads in the list
+	public $leadIds;//comma seperated list of lead IDs, if specified will only retrieve from leads in the comma seperated list
 	
 	public function getData(){
 		$url = $this->host . "/rest/v1/activities.json?access_token=" . $this->getToken() . "&activityTypeIds=" . $this::csvString($this->activityTypeIds)
@@ -31,6 +32,9 @@ class GetLeadActivities{
 		}
 		if (isset($this->listId)){
 			$url .= "&listId=" . $this->listId;
+		}
+		if (isset($this->leadIds)){
+			$url .= "&leadIds=" . $this->leadIds;
 		}
 		$ch = curl_init($url);
 		curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
