@@ -21,7 +21,7 @@ since_date_time = "&nextPageToken=GIYDAOBNGEYS2MBWKQYDAORQGA5DAMBOGAYDAKZQGAYDAL
 #Specify activities needed
 activity_type_ids = "&activityTypeIds=1&activityTypeIds=12"
 #Specify leads needed ()
-lead_ids="&leadIds="3446,7984"
+lead_ids="&leadIds=3446,7984"
 request_url = marketo_instance + endpoint + auth_token + since_date_time + activity_type_ids + lead_ids
 
 #Make request
