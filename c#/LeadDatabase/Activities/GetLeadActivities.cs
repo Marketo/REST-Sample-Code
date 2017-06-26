@@ -27,6 +27,7 @@ namespace Samples
         public String nextPageToken;//paging token returned from getPaging token, required
         public int batchSize;//max 300 default 300
         public int listId;//optional static list to search for activities
+		public String leadIds;//optional comma seperated list of lead IDs to search for activities
 
         /*
         public static void Main(string[] args)
@@ -51,6 +52,10 @@ namespace Samples
             {
                 url += "&listId=" + listId;
             }
+			if (!String.IsNullOrEmpty(leadIds))
+			{
+				url += "&leadIds=" + leadIds;
+			}
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.ContentType = "application/json";
             request.Accept = "application/json";

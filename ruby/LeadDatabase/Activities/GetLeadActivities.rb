@@ -20,7 +20,9 @@ auth_token =  "?access_token=" + "ac756f7a-d54d-41ac-8c3c-f2d2a39ee325:ab"
 since_date_time = "&nextPageToken=GIYDAOBNGEYS2MBWKQYDAORQGA5DAMBOGAYDAKZQGAYDALBQ"
 #Specify activities needed
 activity_type_ids = "&activityTypeIds=1&activityTypeIds=12"
-request_url = marketo_instance + endpoint + auth_token + since_date_time + activity_type_ids
+#Specify leads needed ()
+lead_ids="&leadIds=3446,7984"
+request_url = marketo_instance + endpoint + auth_token + since_date_time + activity_type_ids + lead_ids
 
 #Make request
 response = RestClient.get request_url

@@ -68,6 +68,7 @@ class MultipleCampaigns{
 			}elseif ($i === 0){
 				$csvString = $field;
 			}
+			$i++;
 		}
 		return $csvString;
 	}

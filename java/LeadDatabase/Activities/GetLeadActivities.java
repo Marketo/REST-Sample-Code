@@ -36,6 +36,7 @@ public class Activities {
 	public String nextPageToken; //paging token retrieved with get paging token
 	public Integer batchSize; //max 300, default 300
 	public Integer listId; //will retrieve only for leads present in this list, if set
+	public String leadIds; //will retrieve only for leads present in this comma-seperated list, if set
 	
 	public static void main(String[] args){
 		Activities activities = new Activities();
@@ -58,6 +59,9 @@ public class Activities {
         	}
         	if (listId != null){
         		endpoint.append("&listId=" + listId);
+        	}
+        	if (leadIds != null){
+        		endpoint.append("&leadIds=" + leadIds);
         	}
             URL url = new URL(endpoint.toString());
             HttpsURLConnection urlConn = (HttpsURLConnection) url.openConnection();

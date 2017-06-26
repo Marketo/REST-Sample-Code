@@ -49,7 +49,7 @@ class GetLeadChanges{
 		return $token;
 	}
 	private static function csvString($fields){
-		$csvString = implode(",",$fields);
+		$csvString = implode(",", $fields);
 		return $csvString;
 	}
 }
