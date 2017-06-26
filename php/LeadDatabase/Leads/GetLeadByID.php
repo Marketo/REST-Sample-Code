@@ -37,17 +37,4 @@ class Lead{
 		$token = $response->access_token;
 		return $token;
 	}
-	private static function csvString($fields){
-		$csvString = "";
-		$i = 0;
-		foreach($fields as $field){
-			if ($i > 0){
-				$csvString = $csvString . "," . $field;
-			}elseif ($i === 0){
-				$csvString = $field;
-			}
-			$i++;
-		}
-		return $csvString;
-	}
 }

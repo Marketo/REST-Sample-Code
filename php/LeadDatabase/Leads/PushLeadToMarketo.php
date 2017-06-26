@@ -72,17 +72,4 @@ class PushLeads{
 		$json = json_encode($body);
 		return $json;
 	}
-	private static function csvString($fields){
-		$csvString = "";
-		$i = 0;
-		foreach($fields as $field){
-			if ($i > 0){
-				$csvString = $csvString . "," . $field;
-			}elseif ($i === 0){
-				$csvString = $field;
-			}
-			$i++;
-		}
-		return $csvString;
-	}
 }
