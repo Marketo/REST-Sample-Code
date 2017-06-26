@@ -53,6 +53,7 @@ class MergeLead{
 			}
 			$i++;
 		}
+		$i++;
 		return $csvString;
 	}
 }
