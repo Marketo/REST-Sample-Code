@@ -45,7 +45,7 @@ namespace Samples
             String requestBody = bodyBuilder();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
-            request.ContentType = "application/json";
+            request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "application/json";
             request.Headers["Authorization"] = "Bearer " + getToken();
             StreamWriter wr = new StreamWriter(request.GetRequestStream());
