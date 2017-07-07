@@ -40,7 +40,7 @@ public class ImportLeads {
 	public String format;//format of file included
 	public String lookupField;//field to deduplicate by, defaults to email
 	public Integer listId; //optional id of list to import to
-	public String partitionName; //partition to import to, required if multiple partions exist
+	public String partitionName; //partition to import to, required if multiple partitions exist
 	public String filePath; //path of the file to retrieve data from
 	
 	public static void main(String[] args){

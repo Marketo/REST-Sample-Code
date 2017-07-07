@@ -78,7 +78,7 @@ namespace Samples
                 body.Add("action", action);
             }
             if (partitionName != null){
-                body.Add("partionName", partitionName);
+                body.Add("partitionName", partitionName);
             }
             //Add the list of leads into the input member
             body.Add("input", input);
