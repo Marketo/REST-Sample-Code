@@ -51,8 +51,12 @@ class CloneProgram{
 	}
     
 	private function bodyBuilder(){
-		$jsonFolder = json_encode($this->folder);
-		$requestBody = "name=$this->name&folder=$jsonFolder&description=$this->description";
+		$requestBody = "";
+ 		$requestBody->folder = json_encode($this->folder);
+ 		$requestBody->name = $this->name;
+		if(isset($this->description)){
+			$requestBody .= "&description=$this->description";
+		}		
 		return $requestBody;
 	}
 }
