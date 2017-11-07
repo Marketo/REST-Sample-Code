@@ -16,12 +16,19 @@ $program->name = "New Program PHP";
 $program->description = "created with PHP";
 $program->type = "Default";
 $program->channel = "Content";
+$program->tags = new stdClass();
+$program->tags->tagType = "Program Owner";
+$program->tags->tagValue = "David";
+$program->costs = new stdClass();
+$program->costs->startDate = "2016-07-01";
+$program->costs->cost = 1000;
+$program->costs->note = "Illustrator for eBook";
 
 print_r($program->postData());
 
 
 class CreateProgram{
-        private $host = "CHANGE ME";
+    private $host = "CHANGE ME";
 	private $clientId = "CHANGE ME";
 	private $clientSecret = "CHANGE ME";
 
@@ -55,24 +62,16 @@ class CreateProgram{
 		$token = $response->access_token;
 		return $token;
 	}
+
 	private function bodyBuilder(){
-// 		$requestBody = new stdClass();
-// 		$requestBody->folders = $this->folder;
-// 		$requestBody->name = $this->name;
-// 		$requestBody->description = $this->description;
-// 		$requestBody->type = $this->type;
-// 		$requestBody->channel = $this->channel;
-// 		if (isset($this->tags)){
-// 			$requestBody->tags = $this->tags;
-// 		}
-// 		if(isset($this->costs)){
-// 			$requestBody->costs = $this->costs;
-// 		}
-// 		$json = json_encode($requestBody);
-// 		print_r($json);
-// 		return $json;
-		$jsonFolder = json_encode($this->folder);
-		$requestBody = "name=$this->name&folder=$jsonFolder&description=$this->description&type=$this->type&channel=$this->channel";
+		$requestBody = "";
+ 		$requestBody->folder = json_encode($this->folder);
+ 		$requestBody->name = $this->name;		
+		$requestBody->type = $this->type;
+		$requestBody->channel = $this->channel;
+		if(isset($this->description)){
+			$requestBody .= "&description=$this->description";
+		}
 		if (isset($this->tags)){
 			$jsonTags = json_encode($this->tags);
 			$requestBody .= "&tags=$jsonTags";
