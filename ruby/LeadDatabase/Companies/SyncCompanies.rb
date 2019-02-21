@@ -31,6 +31,6 @@ body = {
   :dedupeBy => "dedupeFields"
 }
 
-response = RestClient.post "#{host}/rest/v1/opportunities.json?access_token=#{get_token(host, client_id, client_secret)}", JSON.generate(body), {:content_type => "application/json"}
+response = RestClient.post "#{host}/rest/v1/companies.json?access_token=#{get_token(host, client_id, client_secret)}", JSON.generate(body), {:content_type => "application/json"}
 
 puts response
