@@ -26,11 +26,11 @@ import time
 import os
 import logging
 from datetime import datetime, timedelta
+import dateutil.parser
 
 munchkin_id = '123-ABC-456'
 launchpoint_service = {'client_id': '00000000-1234-5678-abcd-99999999wxyz',
                        'client_secret': 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'}
-first_lead_created_date = datetime(2019,8,1) # August 1, 2016
 
 class mktoAPIClient:
     def __init__(self, munchkin_id, launchpoint_service, timeout=90):
@@ -143,7 +143,7 @@ def create_export_by_createdAt_job(mkto_instance, fields, start_at, end_at):
     create_export_job_path = '/bulk/v1/leads/export/create.json'
     headers = {'Accept': 'application/json',
                'Content-Type': 'application/json'}
-    create_job_response = send(create_export_job_path,  post_body, 
+    create_job_response = send(create_export_job_path,  data=post_body, 
                                http_method='post', custom_headers=headers)
     export_id = create_job_response['result'][0]['exportId']
     logging.info(f'Created Job ID: {export_id}')
@@ -160,7 +160,7 @@ def enqueue_bulk_export_job(mkto_instance, export_id):
     send = mkto_instance.send_request
     enqueue_path = f'/bulk/v1/leads/export/{export_id}/enqueue.json'
     err_codes_to_ignore = ['1029']
-    retry_time = 15 #seconds
+    retry_time = 60 #seconds
     while True:
         enqueue_dict_response = \
             send(enqueue_path, http_method='post', 
@@ -172,7 +172,7 @@ def enqueue_bulk_export_job(mkto_instance, export_id):
         logging.info(msg)
         time.sleep(retry_time)
         if retry_time < 240:
-            retry_time *= 2 # exponential backoff 15s, 30s, 1m, 2m, 4m
+            retry_time *= 2 # exponential backoff 1m, 2m, 4m
 
 def wait_for_completion(mkto_instance, export_id):
     status_path = f'/bulk/v1/leads/export/{export_id}/status.json'
@@ -180,12 +180,12 @@ def wait_for_completion(mkto_instance, export_id):
     old_status = ''
     while status != 'Completed':
         if old_status != status: #reset backoff on new status
-            poll_time = 15 # seconds
+            poll_time = 60 # seconds
         logging.info(f'Job status: {status}. Waiting {poll_time} seconds')
         old_status = status
         time.sleep(poll_time)
         if poll_time < 240 :
-            poll_time *= 2 # exponential backoff 15s, 30s, 1m, 2m, 4m
+            poll_time *= 2 # exponential backoff 1m, 2m, 4m
         status_response = mkto_instance.send_request(status_path)
         status = status_response['result'][0]['status']
     logging.info('Export job completed.')
@@ -223,6 +223,19 @@ def get_leads_created_between(mkto_instance, start_at, end_at):
     else:
         return dict()
 
+def get_first_date(mkto_instance):
+    send = mkto_instance.send_request
+    parse_date = dateutil.parser.parse
+    query_folders_path = '/rest/asset/v1/folders.json'
+    param = {'maxDepth': '1'}
+    query_folder_response = send(mkto_instance, data=param)
+    top_level_folders = query_folder_response['result']
+    candidate_dates = [folder['createdAt'] for folder in top_level_folders]
+    candidate_datetimes = [parse_date(candidate_date) \
+                           for candidate_date in candidate_datetimes]
+    first_date = min(candidate_datetimes)
+    return first_extract_date
+
 def all_31day_ranges_between(start_at, end_at):
     begin_date = start_at
     max_createdAt_period = timedelta(days=31) - timedelta(seconds=1)
@@ -240,6 +253,7 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"),
 first_extract_date = first_lead_created_date
 last_extract_date = datetime.today()
 mkto_instance = mktoAPIClient(munchkin_id, launchpoint_service)
+first_lead_created_date = get_first_date(mkto_instance)
 all_fields = get_all_fields(mkto_instance)
 file_name = f'{munchkin_id}_every_person.csv'
 with open(file_name, 'w', newline='', encoding='UTF-8') as csv_file:
