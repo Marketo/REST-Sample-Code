@@ -232,7 +232,7 @@ def get_first_date(mkto_instance):
     top_level_folders = query_folder_response['result']
     candidate_dates = [folder['createdAt'] for folder in top_level_folders]
     candidate_datetimes = [parse_date(candidate_date) \
-                           for candidate_date in candidate_datetimes]
+                           for candidate_date in candidate_date]
     first_date = min(candidate_datetimes)
     return first_extract_date
 
