@@ -25,7 +25,7 @@ import csv
 import time
 import os
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import dateutil.parser
 
 munchkin_id = '123-ABC-456'
@@ -37,7 +37,7 @@ class mktoAPIClient:
         self.timeout = timeout # HTTP request timeout in seconds
         self.munchkin_id = str(munchkin_id)
         self._client_id = str(launchpoint_service['client_id'])
-        self._client_secret = str(launchpoint_service['client_secret)'])
+        self._client_secret = str(launchpoint_service['client_secret'])
         self.__expiration = 0
         self.__token = ''
 
@@ -72,8 +72,8 @@ class mktoAPIClient:
             for e in dict_response['warnings']:
                 logging.warning(e)
         if 'errors' in dict_response:
+            unignored_errs = list()
             if err_codes_to_ignore:
-                unignored_errs = list()
                 for err in dict_response['errors']:
                     if not err['code'] in err_codes_to_ignore:
                         unignored_errs.append(err)
@@ -228,13 +228,14 @@ def get_first_date(mkto_instance):
     parse_date = dateutil.parser.parse
     query_folders_path = '/rest/asset/v1/folders.json'
     param = {'maxDepth': '1'}
-    query_folder_response = send(mkto_instance, data=param)
+    query_folder_response = send(query_folders_path, data=param)
     top_level_folders = query_folder_response['result']
     candidate_dates = [folder['createdAt'] for folder in top_level_folders]
     candidate_datetimes = [parse_date(candidate_date) \
                            for candidate_date in candidate_dates]
     first_date = min(candidate_datetimes)
-    return first_extract_date
+    logging.info(f'First date: {first_date}')
+    return first_date
 
 def all_31day_ranges_between(start_at, end_at):
     begin_date = start_at
@@ -250,10 +251,10 @@ def all_31day_ranges_between(start_at, end_at):
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"),
                     format='%(asctime)s - %(message)s')
-first_extract_date = first_lead_created_date
-last_extract_date = datetime.today()
 mkto_instance = mktoAPIClient(munchkin_id, launchpoint_service)
-first_lead_created_date = get_first_date(mkto_instance)
+first_extract_date = get_first_date(mkto_instance)
+last_extract_date = datetime.now(tz=timezone.utc)
+logging.info(f'Last date: {last_extract_date}')
 all_fields = get_all_fields(mkto_instance)
 file_name = f'{munchkin_id}_every_person.csv'
 with open(file_name, 'w', newline='', encoding='UTF-8') as csv_file:
